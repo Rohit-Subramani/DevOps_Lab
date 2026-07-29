@@ -1,0 +1,57 @@
+name: Student Management App CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Project Files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          echo "All required project files are present."
+
+      - name: Validate HTML Structure
+        run: |
+          grep -q "<!DOCTYPE html>" index.html
+          grep -q "<title>Student Management App</title>" index.html
+          grep -q 'id="studentName"' index.html
+          grep -q 'id="studentList"' index.html
+          echo "HTML validation passed."
+
+      - name: Validate CSS
+        run: |
+          grep -q ".container" style.css
+          grep -q "button:hover" style.css
+          grep -q "input" style.css
+          grep -q "li" style.css
+          echo "CSS validation passed."
+
+      - name: Validate JavaScript
+        run: |
+          grep -q "function addStudent" script.js
+          grep -q "addEventListener" script.js
+          grep -q "querySelectorAll" script.js
+          grep -q "alert" script.js
+          grep -q "deleteBtn" script.js
+          echo "JavaScript validation passed."
+
+      - name: Display Project Structure
+        run: |
+          echo "Project files:"
+          ls -la
+
+      - name: CI Success
+        run: echo "Student Management App validation completed successfully."
