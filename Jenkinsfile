@@ -22,6 +22,14 @@ pipeline {
 
         } 
 
+        stage('Checkout Source Code') {
+                    steps {
+                        echo 'Downloading latest application code from GitHub...'
+                        git branch: 'main',
+                        url: 'https://github.com/Rohit-Subramani/DevOps_Lab.git'
+                    }
+                }
+        
         stage('Create Build Artifact') {
             steps {
             echo 'Creating ZIP file...'
