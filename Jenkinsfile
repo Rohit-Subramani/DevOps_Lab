@@ -35,9 +35,7 @@ pipeline {
 
                 echo 'Creating ZIP file...' 
 
-     bat 'powershell Compress-Archive -Path * -DestinationPath  
-
-StudentManagementSystem.zip -Force' 
+     bat 'powershell Compress-Archive -Path * -DestinationPath StudentManagementSystem.zip -Force' 
 
             } 
 
