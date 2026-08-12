@@ -22,6 +22,13 @@ pipeline {
 
         } 
 
+        stage('Create Build Artifact') {
+            steps {
+            echo 'Creating ZIP file...'
+                bat 'powershell Compress-Archive -Path * -DestinationPath StudentManagementSystem.zip -Force'
+                }
+            }
+
         stage('Create Build Artifact') { 
 
             steps { 
